@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/signup.css">
+    <title>Sign Up</title>
+</head>
+<body>
+
+    <div class="signup_container">
+        <div class="signup_image">
+            <img src="../Images/background.png" alt="background image">
+        </div>
+        <form id="signupForm" class="signup" enctype="multipart/form-data">
+            <h1>Sign Up to Student Athlete Hub</h1>
+            <input type="text" placeholder="Enter Name" name="userName">
+            <input type="text" placeholder="Email" name="email">
+            <input type="password" placeholder="Password" name="password">
+            <input type="text" placeholder="Contact" name="contactNumber">
+            <input class="file" type="file" name="profileImage">
+            <button type="submit" style="cursor: pointer;">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+  
+        const formData = new FormData(e.target);
+        const jsonData = {};
+        formData.forEach((value, key) => {
+          jsonData[key] = value;
+        });
+        
+        try {
+          const response = await fetch('http://localhost:8030/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+          });
+  
+          const data = await response.json();
+          console.log(data);
+          
+          if (response.ok) {
+            // Redirect to sign-in page on successful signup
+            window.location.href = 'login.html'; 
+          } else {
+            console.error('Signup failed:', data.error);
+          }
+  
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+  
+      document.getElementById('signupForm').addEventListener('submit', handleSubmit);
+    </script>
+    
+</body>
+</html>

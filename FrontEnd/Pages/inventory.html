@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/inventory.css">
+    <title>My Inventory</title>
+</head>
+
+<body>
+    <div class="Menu">
+        <div class="logo">
+            <img src="../Images/Fun run people logo.png" alt="logo">
+        </div>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">My Profile</a></li>
+            <li><a href="inventory.html">My Inventory</a></li>
+    </div>
+    <div class="add">
+        <div class="item">
+            <div class="list">
+                <h1>Football</h1>
+                <p>Quantity : 1</p>
+                <button>Edit</button>
+            </div>
+            <div>
+                <button class="clear"><img src="../Images/delete.png" alt=""></button>
+             </div>
+        </div>
+        <button id="Add"><p>+</p></button>
+    </div>
+    <div class="popup">
+        <div class="close_btn"><a href="">&times;</a></div>
+        <div class="popup_element">
+            <input type="text" placeholder="resource">
+            <input type="text" placeholder="Quantity">
+            <button>Add</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("Add").addEventListener("click", function () {
+            document.querySelector(".popup").style.display = "block";
+        });
+        
+        document.querySelector(".close_btn").addEventListener("click", function () {
+            document.querySelector(".popup").style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
