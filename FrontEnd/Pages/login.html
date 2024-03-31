@@ -30,38 +30,42 @@
 
 
     <script>
-       document.getElementById('loginForm').addEventListener('submit', async function (event) {
-    event.preventDefault();
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const jsonData = {};
-    formData.forEach((value, key) => {
-        jsonData[key] = value;
-    });
+            const formData = new FormData(event.target);
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
 
-    console.log(jsonData)
-    try {
-        const response = await fetch('http://localhost:8030/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(jsonData)
+            console.log(jsonData)
+            try {
+                const response = await fetch('http://localhost:8030/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+
+
+                    localStorage.setItem("access_token", data.token);
+
+
+                    localStorage.setItem("user_info", JSON.stringify(data.userInfo));
+
+                    window.location.href = 'home.html';
+                } else {
+                    console.error(data.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
         });
-
-        const data = await response.json();
-        if (response.ok) {
-            // Login successful, redirect or perform other actions
-            console.log(data.message);
-            // Redirect to another page
-            window.location.href = 'home.html';
-        } else {
-            console.error(data.error);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-});
 
     </script>
 </body>

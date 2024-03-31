@@ -27,37 +27,34 @@ const login = (req, res) => {
             if (!passwordMatch) {
                 return res.status(401).json({ error: "Invalid password" });
             }
+            
             // Password is correct, login successful
-            return res.status(200).json({ message: "Login successful" });
+            // Function to generate a random secret key
+            const secretKey = "kameshhency"
+
+            // Generate JWT token
+            const randomSecretKey = secretKey;
+            const token = jwt.sign(
+                { id: user.userId, email: user.email },
+                randomSecretKey,
+                { expiresIn: "2d" }
+            );
+
+            const userInfo = {
+                userId: user.userId,
+                userName: user.userName,
+                email: user.email,
+            };
+
+            // Set cookie and send response
+            res
+                .cookie("access_token", token, { httpOnly: true })
+                .status(200)
+                .send({ userInfo, token, message: "User logged in successfully" });
+
         } catch (error) {
             return res.status(500).json({ error: "Error comparing passwords" });
         }
-
-        // Function to generate a random secret key
-        const generateRandomSecretKey = () => {
-            return crypto.randomBytes(32).toString("hex");
-        };
-
-        // Generate JWT token
-        const randomSecretKey = generateRandomSecretKey();
-        const token = jwt.sign(
-            { id: data[0].user_id, email: data[0].email },
-            randomSecretKey,
-            { expiresIn: "2d" }
-        );
-
-        const userInfo = {
-            userId: user.userId,
-            userName: user.userName,
-            email: user.email,
-        };
-
-        // Set cookie and send response
-        res
-            .cookie("access_token", token, { httpOnly: true })
-            .status(200)
-            .send({ userInfo, token, message: "User logged in successfully" });
-
     });
 }
 

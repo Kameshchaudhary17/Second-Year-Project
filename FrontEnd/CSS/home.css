@@ -6,6 +6,7 @@ body{
     background-image: url("../Images/Background.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
     
 }
 .Menu{
@@ -63,19 +64,26 @@ li{
     justify-content: center;
 }
 .container{
-    width: 150vh;
-    height: 100px;
-    background-color: #8D9BAD;
     margin: 20px;
     display: flex;
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    gap: 700px;
+    gap: 30px;
+    flex-direction: column;
 }
+
 .detail{
+    background-color: #8D9BAD;
     color: #0f5662;
     font-size: 20px;
+    width: 750px;
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
 }
 .clear{
     width: 50px;
@@ -91,6 +99,7 @@ li{
     width: 30px;
     height: 30px;
     color: #0f5662;
+    cursor: pointer;
 }
 .add_btn{
     width: 50px;
@@ -110,12 +119,12 @@ li{
 }
 .popup{
     position: absolute;
-    height: 200px;
-    width: 300px;
+    height: fit-content;
+    width: fit-content;
     border-radius: 20px;
-    left: 35%;
-    margin-top: -100px;
-    background-color: #e1dfdf;
+    left: 45%;
+    top: 75%;
+    background-color: #8D9BAD;
     display: none;
 }
 
@@ -123,16 +132,21 @@ li{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 10px;
+    padding: 20px;
     justify-content: center;
     align-items: center;
 }
-.popup input{
+
+.popup h4{
+    margin-top: 20px;
+    text-align: center;
+}
+.popup_element input{
     padding: 10px;
     border-radius: 30px;
     border: none;
     outline: none;
-    height: 10px;
+    height: 15px;
     width: 200px;
 }
 .popup input:hover{
@@ -150,10 +164,12 @@ li{
     align-items: center;
     background-color: #0f5662;
 }
-.close_btn a{
+.close_btn {
     position: absolute;
+    top: 10px;
     right: 10px;
     height: 15px;
     width: 15px;
+    cursor: pointer;
     text-decoration: none;
 }

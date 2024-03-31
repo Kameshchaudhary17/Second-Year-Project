@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Home</title>
 </head>
+
 <body>
     <div class="Menu">
         <div class="logo">
@@ -19,35 +24,46 @@
     </div>
     <div class="add">
         <div class="container">
-            <div class="detail">
-                <p>Football</p>
-                <p>Student Name: Kamesh Chaudhary</p>
-                <p>Time: 10:00 AM</p>
-            </div>
-            <div>
-               <button class="clear"><img src="../Images/delete.png" alt=""></button>
+            <div class="detail" id="detail">
+                <div class="info">
+
+                    <p>Football</p>
+                    <p>Football</p>
+                    <p>Football</p>
+                </div>
+                <button class="clear"><img src="../Images/delete.png" alt=""></button>
             </div>
         </div>
-        <button class= "add_btn" id="add"> <a>+</a></button>
+        <button class="add_btn" id="add"> <a>+</a></button>
     </div>
     <div class="popup">
-        <div class="close_btn"><a href="">&times;</a></div>
-        <div class="popup_element">
-            <input type="text" placeholder="resourceName">
-            <input type="text" placeholder="Name">
-            <input type="time">
+        <div class="close_btn"><i class="fa-solid fa-xmark"></i></div>
+
+        <h4>Add item booking</h4>
+        <form action="" id="addBorrow" class="popup_element">
+
+            <input type="text" placeholder="Resource Name" name="resourceName">
+            <input type="text" placeholder="Student Name" name="studentName">
+
             <button>Add</button>
-        </div>
+
+        </form>
     </div>
 
     <script>
         document.getElementById("add").addEventListener("click", function () {
             document.querySelector(".popup").style.display = "block";
         });
-        
         document.querySelector(".close_btn").addEventListener("click", function () {
             document.querySelector(".popup").style.display = "none";
         });
+
+
+
     </script>
+
+    <script src="../JS/addBooking.js"></script>
+    <script src="../JS/getBookings.js"></script>
 </body>
+
 </html>
