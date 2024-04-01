@@ -2,7 +2,7 @@ const userDataString = localStorage.getItem("user_info");
 const userData = JSON.parse(userDataString);
 const user_id = userData.userId;
 
-const url = `http://localhost:8030/getBookings?user_id=${user_id}`;
+const url = `http://localhost:8030/getInventory?user_id=${user_id}`;
 
 fetch(url)
     .then(response => {
@@ -13,7 +13,7 @@ fetch(url)
     })
     .then(data => {
         console.log(data);
-        populateDetail(data); // Call the function to populate the container with fetched data
+        populateDetail(data);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -21,7 +21,7 @@ fetch(url)
 
 // Function to create detail items and append them to the container
 const populateDetail = (data) => {
-    const container = document.querySelector('.container');
+    const container = document.querySelector('.item');
     container.innerHTML = ''; // Clear existing content in the container
 
     // Check if data is available
@@ -29,15 +29,15 @@ const populateDetail = (data) => {
         data.result.forEach(item => {
             // Create a new detail section
             const detailSection = document.createElement('div');
-            detailSection.classList.add('detail');
+            detailSection.classList.add('list');
 
             // Create a div for info and add data to it
             const infoDiv = document.createElement('div');
             infoDiv.classList.add('info');
             const resourceNamePara = document.createElement('p');
-            resourceNamePara.textContent = `Resource Name: ${item.resourceName}`;
+            resourceNamePara.textContent = `Resource Name: ${item.resourceTitle}`;
             const studentNamePara = document.createElement('p');
-            studentNamePara.textContent = `Student Name: ${item.studentName}`;
+            studentNamePara.textContent = `Student Name: ${item.resourceQuantity}`;
             const timePara = document.createElement('p');
             timePara.textContent = `Time: ${item.time}`;
 
@@ -49,34 +49,36 @@ const populateDetail = (data) => {
             // Append info div to the detail section
             detailSection.appendChild(infoDiv);
 
-            // Create a div for buttons
-            const buttonsDiv = document.createElement('div');
-            buttonsDiv.classList.add('btns');
+            // Create an edit button and add event listener
+            const editButton = document.createElement('button');
+            editButton.classList.add('edit');
+            editButton.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>';
+            editButton.addEventListener('click', () => {
+                // Handle edit functionality here
+            });
+            detailSection.appendChild(editButton);
 
             // Create a delete button and add event listener
             const deleteButton = document.createElement('button');
             deleteButton.classList.add('delete');
             deleteButton.innerHTML = '<img src="../Images/delete.png" alt="">';
-            deleteButton.addEventListener('click', () => {
-                detailSection.remove(); // Remove the detail section when the button is clicked
+            deleteButton.addEventListener('click', async () => {
+                try {
+                    const response = await fetch(`http://localhost:8030/deleteResources?resourceId=${item.resourceId}`, {
+                        method: 'DELETE'
+                    });
+                    if (response.ok) {
+                        // If the deletion was successful, remove the detail section
+                        detailSection.remove();
+                    } else {
+                        // Handle errors or display a message if deletion failed
+                        console.error('Deletion failed:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
             });
-
-            // Append delete button to the buttons div
-            buttonsDiv.appendChild(deleteButton);
-
-            // Create an edit button and add event listener
-            const editButton = document.createElement('button');
-            editButton.classList.add('edit');
-            editButton.innerHTML = '<img src="../Images/edit.svg" alt="">';
-            editButton.addEventListener('click', () => {
-                // Add your edit functionality here
-            });
-
-            // Append edit button to the buttons div
-            buttonsDiv.appendChild(editButton);
-
-            // Append the buttons div to the detail section
-            detailSection.appendChild(buttonsDiv);
+            detailSection.appendChild(deleteButton);
 
             // Append the detail section to the container
             container.appendChild(detailSection);
@@ -84,7 +86,7 @@ const populateDetail = (data) => {
     } else {
         // If no data is available, display a message
         const noDataPara = document.createElement('p');
-        noDataPara.textContent = 'No bookings found';
+        noDataPara.textContent = 'No resources found';
         container.appendChild(noDataPara);
     }
 };

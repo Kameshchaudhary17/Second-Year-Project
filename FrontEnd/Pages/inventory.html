@@ -21,34 +21,45 @@
     <div class="add">
         <div class="item">
             <div class="list">
-                <h1>Football</h1>
+
+                <div class="info">
+
+                    <p>Football</p>
+                    <p>Football</p>
+                    <p>Football</p>
+                </div>
+                <!-- <h1>Football</h1>
                 <p>Quantity : 1</p>
                 <button>Edit</button>
+                <button class="clear"><img src="../Images/delete.png" alt=""></button> -->
             </div>
-            <div>
-                <button class="clear"><img src="../Images/delete.png" alt=""></button>
-             </div>
+
         </div>
-        <button id="Add"><p>+</p></button>
+        <button id="Add">
+            <p>+</p>
+        </button>
     </div>
     <div class="popup">
-        <div class="close_btn">&times;</div>
-        <div class="popup_element">
-            <input type="text" placeholder="resource">
-            <input type="text" placeholder="Quantity">
-            <button>Add</button>
-        </div>
+        <form action="" id="addInventory" class="popup_element">
+            <div class="close_btn">&times;</div>
+            <input type="text" placeholder="resource" name="resourceTitle">
+            <input type="text" placeholder="Quantity" name="resourceQuantity">
+            <button type="submit">Add</button>
+        </form>
     </div>
 
     <script>
         document.getElementById("Add").addEventListener("click", function () {
             document.querySelector(".popup").style.display = "block";
         });
-        
+
         document.querySelector(".close_btn").addEventListener("click", function () {
             document.querySelector(".popup").style.display = "none";
         });
     </script>
+
+    <script src="../JS/addInventory.js"></script>
+    <script src="../JS/getInventory.js"></script>
 </body>
 
 </html>

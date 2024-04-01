@@ -7,6 +7,8 @@ const addResourceRoute = require('./controller/addResource')
 const deleteResourcesRoute = require('./controller/deleteResources')
 const addStudentRoute = require('./controller/addStudent')
 const getBookingsRoute = require('./controller/getBookings')
+const getInventoryRoute = require('./controller/getInventory')
+const changeStatusRoute = require('./controller/changeStatus')
 
 const app = express()
 
@@ -20,6 +22,8 @@ app.post("/addResource", addResourceRoute)
 app.delete("/deleteResources", deleteResourcesRoute)
 app.post("/addStudent", addStudentRoute)
 app.get("/getBookings", getBookingsRoute)
+app.get("/getInventory", getInventoryRoute)
+app.put("/changeStatus", changeStatusRoute)
 
 
 app.listen(8030, (req,res) => {

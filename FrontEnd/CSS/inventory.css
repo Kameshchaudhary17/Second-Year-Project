@@ -1,14 +1,16 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
-body{
+
+body {
     background-image: url("../Images/Background.svg");
     background-repeat: no-repeat;
     background-size: cover;
-    
+
 }
-.Menu{
+
+.Menu {
     display: flex;
     height: 100px;
     width: 100%;
@@ -17,13 +19,16 @@ body{
     justify-content: center;
     gap: 800px;
 }
-.Menu ul{
+
+.Menu ul {
     display: flex;
     gap: 30px;
 }
-li{
+
+li {
     list-style: none;
 }
+
 .Menu ul a {
     text-decoration: none;
     color: #ffffff;
@@ -32,12 +37,13 @@ li{
     transition: all 0.3s ease-in-out;
     position: relative;
 
-    &:hover{
-        color:#0f5662;
-        
+    &:hover {
+        color: #0f5662;
+
     }
-    &::after{
-        content:"";
+
+    &::after {
+        content: "";
         width: 0px;
         position: absolute;
         left: 0;
@@ -45,24 +51,27 @@ li{
         bottom: -5px;
         transition: width 0.3s ease;
     }
-    &:hover::after{
+
+    &:hover::after {
         height: 2px;
         background-color: #0f5662;
         width: 100%;
     }
 }
 
-.logo img{
+.logo img {
     width: 200px;
     height: 200px;
 }
-.add{
+
+.add {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 400px;
 }
-.add button{
+
+.add button {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -73,33 +82,43 @@ li{
     align-items: center;
     background-color: #0f5662;
 }
-.item{
-    width: 700px;
-    height: 120px;
-    background-color: #8D9BAD;
+
+.item {
+
     margin: 20px;
     display: flex;
     border-radius: 20px;
     justify-content: center;
     align-items: center;
-    gap: 400px;
+    flex-direction: column;
+    gap: 30px;
 }
-.list{
-    display: block;
+
+.list {
+    width: 750px;
+    padding: 20px;
+    background-color: #8D9BAD;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
 }
-.list H1{
+
+.list H1 {
     color: #ffffff;
 }
-.list p{
+
+.list p {
     color: #ffffff;
 }
-.list button{
+
+.list button {
     color: #ffffff;
     width: 50px;
     height: 30px;
     border-radius: 20px
 }
-.clear{
+
+.clear {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -109,17 +128,20 @@ li{
     align-items: center;
     background-color: #0f5662;
 }
-.clear img{
+
+.clear img {
     width: 30px;
     height: 30px;
     color: #0f5662;
 }
-.add button p{
+
+.add button p {
     font-size: 80px;
     color: #ffffff;
     text-decoration: none;
 }
-.popup{
+
+.popup {
     position: absolute;
     height: 150px;
     width: 300px;
@@ -130,7 +152,7 @@ li{
     justify-content: center;
 }
 
-.popup_element{
+.popup_element {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -138,7 +160,8 @@ li{
     justify-content: center;
     align-items: center;
 }
-.popup input{
+
+.popup input {
     padding: 10px;
     border-radius: 30px;
     border: none;
@@ -146,11 +169,12 @@ li{
     height: 10px;
     width: 200px;
 }
-.popup input:hover{
+
+.popup input:hover {
     border: 1px solid #0f5662;
 }
 
-.popup button{
+.popup button {
     color: #ffffff;
     width: 50px;
     height: 30px;
@@ -161,7 +185,8 @@ li{
     align-items: center;
     background-color: #0f5662;
 }
-.close_btn a{
+
+.close_btn a {
     position: absolute;
     right: 10px;
     height: 15px;

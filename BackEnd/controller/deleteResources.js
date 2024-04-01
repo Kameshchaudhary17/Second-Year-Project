@@ -1,8 +1,8 @@
 const db = require("../config/dbConfig");
 
 const deleteResources = (req, res) => {
-  const { resourceId } = req.body;
-
+  const { resourceId } = req.query;
+console.log("hi")
   const deleteResourcesQuery = 'DELETE FROM resources WHERE resourceId = ?';
 
   db.query(deleteResourcesQuery, resourceId, (error, result) => {
